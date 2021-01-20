@@ -1,7 +1,7 @@
 package com.example.webday10.repository.impl;
 
-import javax.persistence.EntityManager;
-
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,16 +11,17 @@ import com.example.webday10.repository.FacultyRepository;
 @Repository
 public class FacultyRepositoryImpl implements FacultyRepository {
 
-	private EntityManager em;
+	private SessionFactory sessionFactory;
 
 	@Autowired
-	public FacultyRepositoryImpl(EntityManager em) {
-		this.em = em;
+	public FacultyRepositoryImpl(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
 	@Override
 	public void insert(Faculty f) {
-		em.persist(f);
+		Session session = sessionFactory.getCurrentSession();
+		session.persist(f);
 	}
 
 }
