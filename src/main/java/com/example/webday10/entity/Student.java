@@ -1,13 +1,6 @@
 package com.example.webday10.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "STUDENTS")
@@ -20,11 +13,11 @@ public class Student {
 	private String name;
 	private String address;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "FACULTY_ID", referencedColumnName = "ID")
 	private Faculty faculty;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "PASSPORT_ID", referencedColumnName = "ID")
 	private Passport passport;
 
