@@ -22,6 +22,11 @@ public class FacultyRepositoryImpl implements FacultyRepository {
 	public void insert(Faculty f) {
 		Session session = sessionFactory.getCurrentSession();
 		session.persist(f);
+
+		String name = f.getName();
+		name = name + " Edited in Managed state";
+		f.setName(name);
+
 	}
 
 }
